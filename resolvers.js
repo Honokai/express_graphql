@@ -1,4 +1,4 @@
-const { Usuario } = require('./models')
+const { Usuario, Aluno } = require('./models')
 const bcrypt = require('bcrypt')
 const jsonwebtoken = require('jsonwebtoken')
 
@@ -16,7 +16,16 @@ const resolvers = {
                     })
             }
             throw new Error("Você não está autenticado.")
-        }
+        },
+        
+        async findAllUsers(_, args, { user }) {
+           
+            if(user){
+                return await Usuario.findAll()
+            }
+            throw new Error("Você não está autenticado.")
+        },
+
     },
 
     Mutation: {
@@ -51,6 +60,18 @@ const resolvers = {
                 expiresIn: "1d",
             });
         },
+
+        async alunoCreate (_, { matricula, av1, av2, av3 }) {
+            
+            const aluno = Aluno.create({
+                matricula,
+                av1,
+                av2,
+                av3
+            })
+
+            return aluno
+        }
     },
 }
 
