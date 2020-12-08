@@ -20,6 +20,14 @@ module.exports = {
       av3: {
         type: Sequelize.FLOAT
       },
+      id_usuario: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: 'usuarios',
+          key: 'id'
+        }
+      },
       createdAt: {
         field: 'criado_em',
         allowNull: false,

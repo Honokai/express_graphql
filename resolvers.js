@@ -61,16 +61,26 @@ const resolvers = {
             });
         },
 
-        async alunoCreate (_, { matricula, av1, av2, av3 }) {
+        async alunoCreate(_, { matricula, av1, av2, av3, id_usuario }) {
+            try {
+                const aluno = Aluno.create({
+                    matricula,
+                    av1,
+                    av2,
+                    av3,
+                    id_usuario
+                })
+                
+                return {aluno.id, aluno.matricula, ...}
+            } catch(error) {
+                return {
+                    statusCode: 500,
+                    body: JSON.stringify({"error": error})
+                }
+            }
             
-            const aluno = Aluno.create({
-                matricula,
-                av1,
-                av2,
-                av3
-            })
 
-            return aluno
+            
         }
     },
 }

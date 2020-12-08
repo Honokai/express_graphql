@@ -13,6 +13,7 @@ const typeDefs = gql`
         av1: Float
         av2: Float
         av3: Float
+        id_usuario: Int!
     }
 
     type Beer {
@@ -32,7 +33,7 @@ const typeDefs = gql`
     type Mutation {
         register(nome: String!, login: String!, senha: String!): String
         login(login: String!, senha: String!): String
-        alunoCreate(matricula: String!, av1: Float!, av2: Float!, av3: Float!): String
+        alunoCreate(matricula: String!, av1: Float!, av2: Float!, av3: Float!, id_usuario: Int!): Alunos
     }
 `
 
